@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, InteractionContextType, MessageFlags } = require('discord.js');
+const { SlashCommandBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, InteractionContextType, MessageFlags, Client, Collection } = require('discord.js');
 const pingMessages = require('./../helpers/pingMessage.js')
 const database = require('./../helpers/database.js')
 const { upgrades, rawUpgrades } = require('./../helpers/upgrades.js')
@@ -6,6 +6,8 @@ const { ownerId } = require('./../config.json');
 const formatNumber = require('./../helpers/formatNumber.js')
 const { getEmoji } = require('../helpers/emojis.js');
 const MAX_PING_OFFSET = 5
+const client = new Client({ intents: [] });
+client.commands = new Collection();
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -351,11 +353,14 @@ async function ping(interaction, isSuper = false) {
             .setCustomId('ping:empty')
             .setDisabled(true);
         const disabledRow = new ActionRowBuilder().addComponents(button);
+        
+        client.commands.fetch();
+        upgradeID = client.commands.findKey(command => command.name === 'upgrade');
 
         return await interaction.update({
             content:
                 `${pingMessage}
-you have a lot of pts... why don't you go spend them over in </upgrade:1360377407109861648>?`, // TODO: change to dynamically use ID
+you have a lot of pts... why don't you go spend them over in </upgrade:${upgradeID}>?`,
             components: [disabledRow]
         })
     }
