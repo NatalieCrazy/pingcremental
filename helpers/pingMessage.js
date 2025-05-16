@@ -1,3 +1,10 @@
+const { Client, Collection } = require('discord.js');
+const client = new Client({ intents: [] });
+client.commands = new Collection();
+client.commands.fetch();
+feedbackID = client.commands.findKey(command => command.name === 'feedbackID');
+pingID = client.commands.findKey(command => command.name === 'ping');
+
 function get(ping, context) {
     // base messages
     let messagesList = [
@@ -197,7 +204,7 @@ function get(ping, context) {
         "breaking news: local ping bot goes rogue, spams messages",
         "i tripped over the stack trace and spilled ping everywhere",
         "the ping is an illusion, lag is real",
-        "have any ideas? try </feedback submit:1363002827664003284>!",
+        `have any ideas? try feedback submit:</${feedbackID}>!`,
         "did you know? this is my current ping:",
         "ping pong? more like... more like ping wrong",
         "just another friendly neighborhood ping",
@@ -247,7 +254,7 @@ function get(ping, context) {
         "no one asked for this ping message, but here it is",
         "boop",
         "back already? here's another ping",
-        "you should check out our </ping:1360377407109861647> command at some point",
+        `you should check out our ping:</${pingID}> command at some point`,
         "ping served fresh, no preservatives",
         "this ping is locally sourced",
         "just a humble ping making its way in the world",
@@ -334,7 +341,7 @@ function get(ping, context) {
         "fine. ping. happy now?",
         "this is my 'sending ping but sighing deeply' message",
         "ping delivered with mild resentment",
-        "pong :3", //i think its funny to sometimes be given this one and not know if it was the 15% chance or one random one
+        "pоng :3", //i think its funny to sometimes be given this one and not know if it was the 15% chance or one random one (i just made it slightly different lol)
         "this ping was sent! i think",
         "what does the fox say?",
         "*happy cat noises\\*",
@@ -344,6 +351,7 @@ function get(ping, context) {
         "this is a ping message (i think)",
         "thank god there's no gambling in this bot. hey, wait",
         "i'm pretty sure you aren't about to get infinite pts. can't be sure though",
+        "BREAKING: this is the worst ping message, sorry",
 
 
         // these are all references
