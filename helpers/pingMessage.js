@@ -465,16 +465,6 @@ function get(ping, context) {
         )
     }
 
-    // bonus message for LESBIANS
-    if (context.user && (context.user.id === "804762486946660353" || context.user.id === "1001871665745100870")) {
-        messagesList.push(
-            "stella and natalie kissing",
-            "you should kiss your girlfriend, NOW",
-            "you're LESBIAN and it's CUTE",
-            ":patthestella: :patthenatalie:"
-        )
-    }
-
     // only if player was clicking (can't appear with /ping, only on button press)
     if (context.score) {
         if (Math.random() * 100 <= 7) messagesList = [
@@ -690,6 +680,16 @@ function get(ping, context) {
         ]
     }
 
+    // bonus message for LESBIANS
+    if (context.user && (context.user.id === "804762486946660353" || context.user.id === "1001871665745100870")) {
+        messagesList.push(
+            "stella and natalie kissing",
+            "you should kiss your girlfriend, NOW",
+            "you're LESBIAN and it's CUTE",
+            ":patthestella: :patthenatalie:"
+        )
+    }
+    
     // rare messages (0.1% chance)
     if (context.rare) {
         messagesList = [
